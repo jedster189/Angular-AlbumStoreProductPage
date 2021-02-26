@@ -1,6 +1,10 @@
-import 'rxjs/add/operator/map';
 import { Http, Response } from '@angular/http';
 import { Injectable, NgModule } from '@angular/core';
+
+import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
+
+import { Album } from './album';
 
 @Injectable()
 @NgModule()
@@ -9,9 +13,8 @@ export class ProductService {
 
   constructor(private _http: Http) { }
 
-  getAlbum(id: number) {
+  getAlbum(id: number): Observable<Album> {
     return this._http.get(this._albumUrl).map((response) =>
-    response.json());
+    response.json() as Album);
   }
-
 }
